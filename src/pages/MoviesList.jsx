@@ -30,7 +30,7 @@ export default function MoviesList() {
     try {
       let response = await axiosPrivate.get(
         // `/rent-store/movies/?page=${count}&from-year=2015`,
-        `/rent-store/movies/?page=${count}`,
+        `/rent-store/movies/?page=${count}&page_size=10`,
         {
           headers: {
             Authorization: 'Bearer ' + auth.accessToken, //the token is a variable which holds the token
@@ -38,7 +38,7 @@ export default function MoviesList() {
         }
       );
       setMovies(response?.data.results);
-      setMaxCount(Math.ceil(response?.data.count / 5));
+      setMaxCount(Math.ceil(response?.data.count / 10));
       console.log(response?.data);
     } catch (error) {
       console.log(error);
